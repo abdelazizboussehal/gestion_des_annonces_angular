@@ -28,6 +28,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -124,5 +125,8 @@
       }
     }
   },
-  "defaultProject": "audaxis-project"
+  "defaultProject": "audaxis-project",
+  "cli": {
+    "analytics": "0b9cb5e5-8c5b-4c0c-9857-88cf46a2270f"
+  }
 }

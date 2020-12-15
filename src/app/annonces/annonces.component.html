@@ -1,0 +1,42 @@
+<!--<h1 [ngStyle]="{backgroundColor: changeBackground()}"> Status network is
+  <div *ngIf="statusNetwork === 'onLine'; else elseBlock"> online</div>
+  <ng-template #elseBlock> <div> off Line </div></ng-template>
+</h1>
+
+<p>List of annonces:</p>
+<div *ngFor="let annonce of arrayAnnonces; index as i; first as isFirst">
+  {{i}} <app-annonce></app-annonce>
+</div>
+<hr>
+<input type="text" class="form-control" [(ngModel)]="updateNameAnnonceVar">
+<p>{{ updateNameAnnonceVar }}</p>
+<button class="btn btn-primary mx-4" [disabled]="updateNameAnnonceVar === ''" (click)="addAnnonce()"> Add one annonce</button>
+<p [class]="classOfNotification"> {{statusOfAnnonce}}</p>-->
+
+<div class="container" >
+  <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 mx-2">
+    <form >
+      <legend>Add new annonce</legend>
+      <div class="form-group text-left">
+        <label appBackGroundColor [colorInput]="nameInput.value" >Name :  </label>
+        <input type="text" class="form-control" #nameInput>
+        <label >Type :  </label>
+        <input type="text" class="form-control" #typeInput>
+      </div>
+      <button (click)="addAnnonce(nameInput,typeInput)" class="btn btn-success"> add new annonce</button>
+    </form>
+    <div class="list-group" *ngFor="let annonce of annonces">
+      <a href="#" (click)="onItemtChange(annonce)" class="list-group-item">
+        <app-annonce [element]="annonce"></app-annonce>
+      </a>
+    </div>
+  </div>
+  <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+  <app-details (eventChild)="onChildEvent($event)"
+               [element]="annonceDtails"
+                *ngIf="annonceDtails; else infotext"></app-details>
+    <ng-template #infotext>
+      <p class="text-danger" > select annonce for see it details</p>
+    </ng-template>
+  </div>
+</div>
