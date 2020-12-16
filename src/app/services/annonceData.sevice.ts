@@ -9,7 +9,7 @@ export class AnnonceDataSevice{
     new Annonce(1, 1, 'caba',
       'samsung ooredoo a5', 'jdod bzf gasba', '***', 1, 1, '2020-12-1')
   ];
-  private annonceDetails: Annonce | undefined;
+  private annonceDetails: Annonce = this.annonces[0];
   annonceDetailsEmitter = new EventEmitter<Annonce>();
   annoncesEmitter = new EventEmitter<Annonce[]>();
   getAnnonces(): Annonce[]{

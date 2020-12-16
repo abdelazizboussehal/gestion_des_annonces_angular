@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, Params} from '@angular/router';
 
 @Component({
   selector: 'app-warning-alert',
@@ -14,10 +15,14 @@ import { Component, OnInit } from '@angular/core';
   ]
 })
 export class WarningAlertComponent implements OnInit {
-
-  constructor() { }
+  alaertMessage: any;
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.alaertMessage = this.route.snapshot.params.msg;
+    this.route.params.subscribe((data: Params) => {
+      this.alaertMessage = data.msg;
+    });
   }
 
 }

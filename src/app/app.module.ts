@@ -17,8 +17,26 @@ import {BackgroundcolorDirective} from './annonces/backgroundcolor.directive';
 import { UnlessDirective } from './unless.directive';
 import { NavBarButtonStatusDirective } from './nav-bar-button-status.directive';
 import {AnnonceDataSevice} from './services/annonceData.sevice';
+import {RouterModule, Routes} from '@angular/router';
+import { UserComponent } from './user/user.component';
 
-
+const myrouter: Routes = [
+  { path: '',
+    component: SuccessAlertComponent},
+  { path: 'annonces',
+    component: AnnoncesComponent, children: [
+      {
+        path: ':id/details',
+        component: DetailsComponent
+      }
+    ]},
+  { path: 'alert/:msg',
+    component: WarningAlertComponent
+  },
+  { path: 'annonces/user/:id',
+    component: UserComponent
+  }
+];
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,12 +51,14 @@ import {AnnonceDataSevice} from './services/annonceData.sevice';
     GameOddComponent,
     BackgroundcolorDirective,
     UnlessDirective,
-    NavBarButtonStatusDirective
+    NavBarButtonStatusDirective,
+    UserComponent
   ],
     imports: [
         BrowserModule,
         AppRoutingModule,
-        FormsModule
+        FormsModule,
+      RouterModule.forRoot(myrouter)
     ],
   providers: [AnnonceDataSevice],
   bootstrap: [AppComponent]

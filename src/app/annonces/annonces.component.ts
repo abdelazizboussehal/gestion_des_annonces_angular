@@ -1,6 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Annonce} from './annonce.model';
 import {AnnonceDataSevice} from '../services/annonceData.sevice';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-annonces',
@@ -12,7 +13,9 @@ export class AnnoncesComponent implements OnInit {
   annonceDtails;
   @ViewChild('nameInput')
   nameInput!: ElementRef;
-  constructor( private annonceDataService: AnnonceDataSevice) {
+  constructor( private annonceDataService: AnnonceDataSevice,
+               private router: Router,
+               private route: ActivatedRoute) {
     this.annonces = this.annonceDataService.getAnnonces();
     this.annonceDtails = this.annonceDataService.getAnnonceDetails();
   }
@@ -22,6 +25,11 @@ export class AnnoncesComponent implements OnInit {
   }
   onItemtChange(annonce: Annonce): void {
     this.annonceDataService.annonceDetailsEmitter.emit(annonce);
+    this.router.navigate([ annonce.id, 'details'],
+      {
+        queryParams: {productName : annonce.productName},
+        fragment: 'loading',
+        relativeTo : this.route});
   }
 
   addAnnonce(nameInput: HTMLInputElement, typeInput: HTMLInputElement): void {

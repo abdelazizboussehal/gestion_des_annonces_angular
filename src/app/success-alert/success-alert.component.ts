@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-success-alert',
@@ -15,7 +16,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SuccessAlertComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) {setTimeout(() => {
+      this.router.navigate(['/annonces']);
+    }, 2000 );
+  }
 
   ngOnInit(): void {
   }

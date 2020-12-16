@@ -1,23 +1,27 @@
 <div class="dropdown">
   <button appNavBarButtonStatus [list]="listElemnt" class="btn btn-default" type="button" id="dropdownMenu1" data-toggle="dropdown">
-    Dropdown
+    Routes
     <span class="caret"></span>
   </button>
-  <ul class="dropdown-menu" role="menu" #listElemnt>
-    <li role="presentation" class="dropdown-header">Dropdown header</li>
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-    <li role="presentation" class="disabled"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-    <li role="presentation" class="divider"></li>
-    <li role="presentation" class="dropdown-header">Dropdown header</li>
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+  <ul class="dropdown-menu"  role="menu" #listElemnt>
+    <li role="presentation"  class="dropdown-header">Routes</li>
+    <li role="presentation" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact : true}" ><a role="menuitem" tabindex="-1" [routerLink]="'/'">Home</a></li>
+    <li role="presentation" [routerLinkActive]="'active'"><a role="menuitem" tabindex="-1" [routerLink]="['annonces']">Annonces</a></li>
+    <li role="presentation" [routerLinkActive]="'active'">
+
+      <input type="text" #msgErrorInput placeholder=" error message"/>
+      <a role="menuitem"  [routerLink]="['alert',msgErrorInput.value]">Warning messag</a>
+
+    </li>
+
+
   </ul>
 </div>
 <div class="container">
 <div class="row text-center">
   <div class="col">
     <p class="h3 text-left text-primary">{{title}}</p>
-    <app-annonces></app-annonces>
+    <router-outlet></router-outlet>
   </div>
  <!-- <div class="col">
     <app-success-alert></app-success-alert>

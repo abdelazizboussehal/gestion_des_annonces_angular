@@ -26,13 +26,13 @@
       <button (click)="addAnnonce(nameInput,typeInput)" class="btn btn-success"> add new annonce</button>
     </form>
     <div class="list-group" *ngFor="let annonce of annonces">
-      <a href="#" (click)="onItemtChange(annonce)" class="list-group-item">
+      <a (click)="onItemtChange(annonce)" class="list-group-item">
         <app-annonce [element]="annonce"></app-annonce>
       </a>
     </div>
   </div>
   <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-  <app-details *ngIf="annonceDtails; else infotext"></app-details>
+  <router-outlet *ngIf="annonceDtails; else infotext"></router-outlet>
     <ng-template #infotext>
       <p class="text-danger" > select annonce for see it details</p>
     </ng-template>
