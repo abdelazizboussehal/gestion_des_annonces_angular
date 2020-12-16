@@ -1,7 +1,7 @@
-import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
-import {Annonce} from '../annonce.model';
+import {Component, OnInit } from '@angular/core';
 import {TestService} from '../../test.service';
 import {AnnonceDataSevice} from '../../services/annonceData.sevice';
+import {Annonce} from '../annonce.model';
 
 @Component({
   selector: 'app-details',
@@ -12,18 +12,21 @@ import {AnnonceDataSevice} from '../../services/annonceData.sevice';
   ]
 })
 export class DetailsComponent implements OnInit {
-  @Input()
-  element!: Annonce;
-  @Output() eventChild = new EventEmitter <Annonce>();
-  constructor(private service: TestService, private annonceDataService: AnnonceDataSevice) { }
+  element;
+  constructor(private service: TestService, private annonceDataService: AnnonceDataSevice) {
+    this.element = annonceDataService.getAnnonceDetails();
+  }
 
   ngOnInit(): void {
-    console.log('dtails');
-    this.service.onCreate();
+    this.annonceDataService.annonceDetailsEmitter.subscribe((data: Annonce) => {this.element = data; });
   }
   onChangeAnnonce(): void{
-    this.element.ficheTechnique = 'hello from child';
-    this.eventChild.emit(this.element);
+    if (this.element)
+    { this.element.productName = 'hello from child'; }
   }
-
+  onRemove(): void {
+    if (this.element) {
+      this.annonceDataService.removeAnnonce(this.element);
+    }
+  }
 }

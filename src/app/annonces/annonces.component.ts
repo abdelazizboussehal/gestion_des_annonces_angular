@@ -8,23 +8,24 @@ import {AnnonceDataSevice} from '../services/annonceData.sevice';
   styleUrls: ['./annonces.component.css']
 })
 export class AnnoncesComponent implements OnInit {
-  annonces: Annonce[] = this.annonceDataService.annonces;
-  annonceDtails: Annonce | undefined;
+  annonces;
+  annonceDtails;
   @ViewChild('nameInput')
   nameInput!: ElementRef;
   constructor( private annonceDataService: AnnonceDataSevice) {
-  }
-  onChildEvent(annonce: Annonce): void {
-    this.annonces[0] = annonce;
+    this.annonces = this.annonceDataService.getAnnonces();
+    this.annonceDtails = this.annonceDataService.getAnnonceDetails();
   }
   ngOnInit(): void {
+    this.annonceDataService.annoncesEmitter.subscribe((data: Annonce[]) => {this.annonces = data; });
+    this.annonceDataService.annonceDetailsEmitter.subscribe((data: Annonce) => {this.annonceDtails = data; });
   }
   onItemtChange(annonce: Annonce): void {
-    this.annonceDtails = annonce;
+    this.annonceDataService.annonceDetailsEmitter.emit(annonce);
   }
 
   addAnnonce(nameInput: HTMLInputElement, typeInput: HTMLInputElement): void {
-    this.annonceDataService.annonces.push(
+    this.annonceDataService.addAnnonce(
       new Annonce(1, 1, typeInput.value,
         this.nameInput.nativeElement.value, 'jdod gasba', '***', 1, 1, '2020-12-1')
     );

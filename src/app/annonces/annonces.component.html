@@ -32,9 +32,7 @@
     </div>
   </div>
   <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-  <app-details (eventChild)="onChildEvent($event)"
-               [element]="annonceDtails"
-                *ngIf="annonceDtails; else infotext"></app-details>
+  <app-details *ngIf="annonceDtails; else infotext"></app-details>
     <ng-template #infotext>
       <p class="text-danger" > select annonce for see it details</p>
     </ng-template>
