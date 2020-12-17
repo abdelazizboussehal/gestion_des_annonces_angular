@@ -26,5 +26,8 @@ export class AnnonceDataSevice{
   getAnnonceDetails(): any {
     return this.annonceDetails;
   }
+  getAnnonceByIndex(id: number): Annonce{
+    return this.annonces[id];
+  }
 
 }

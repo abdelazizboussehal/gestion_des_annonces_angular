@@ -17,26 +17,13 @@ import {BackgroundcolorDirective} from './annonces/backgroundcolor.directive';
 import { UnlessDirective } from './unless.directive';
 import { NavBarButtonStatusDirective } from './nav-bar-button-status.directive';
 import {AnnonceDataSevice} from './services/annonceData.sevice';
-import {RouterModule, Routes} from '@angular/router';
 import { UserComponent } from './user/user.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import {AuthService} from './services/auth.service';
+import {RouteGuardService} from './services/route-guard.service';
+import {CanDeactivateGuardSerice} from './services/can-deactivate-guard.serice';
+import {AnnonceResorverService} from './services/annonceResorver.service';
 
-const myrouter: Routes = [
-  { path: '',
-    component: SuccessAlertComponent},
-  { path: 'annonces',
-    component: AnnoncesComponent, children: [
-      {
-        path: ':id/details',
-        component: DetailsComponent
-      }
-    ]},
-  { path: 'alert/:msg',
-    component: WarningAlertComponent
-  },
-  { path: 'annonces/user/:id',
-    component: UserComponent
-  }
-];
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,15 +39,17 @@ const myrouter: Routes = [
     BackgroundcolorDirective,
     UnlessDirective,
     NavBarButtonStatusDirective,
-    UserComponent
+    UserComponent,
+    PageNotFoundComponent
   ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         FormsModule,
-      RouterModule.forRoot(myrouter)
+        AppRoutingModule
     ],
-  providers: [AnnonceDataSevice],
+  providers: [AnnonceDataSevice, AuthService, RouteGuardService, CanDeactivateGuardSerice,
+  AnnonceResorverService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,6 +2,7 @@ import {Component, OnInit } from '@angular/core';
 import {TestService} from '../../test.service';
 import {AnnonceDataSevice} from '../../services/annonceData.sevice';
 import {Annonce} from '../annonce.model';
+import {ActivatedRoute, Data} from '@angular/router';
 
 @Component({
   selector: 'app-details',
@@ -13,12 +14,15 @@ import {Annonce} from '../annonce.model';
 })
 export class DetailsComponent implements OnInit {
   element;
-  constructor(private service: TestService, private annonceDataService: AnnonceDataSevice) {
+  constructor(private service: TestService, private annonceDataService: AnnonceDataSevice, private route: ActivatedRoute) {
     this.element = annonceDataService.getAnnonceDetails();
   }
 
   ngOnInit(): void {
-    this.annonceDataService.annonceDetailsEmitter.subscribe((data: Annonce) => {this.element = data; });
+    this.route.data.subscribe( (data: Data) => {
+      this.element = data.ad;
+    });
+    // this.annonceDataService.annonceDetailsEmitter.subscribe((data: Annonce) => {this.element = data; });
   }
   onChangeAnnonce(): void{
     if (this.element)
