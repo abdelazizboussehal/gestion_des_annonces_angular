@@ -23,6 +23,10 @@ import {AuthService} from './services/auth.service';
 import {RouteGuardService} from './services/route-guard.service';
 import {CanDeactivateGuardSerice} from './services/can-deactivate-guard.serice';
 import {AnnonceResorverService} from './services/annonceResorver.service';
+import { HeaderComponent } from './header/header.component';
+import { CommentsComponent } from './comments/comments.component';
+import { CommentItemComponent } from './comments/comment-item/comment-item.component';
+import { CreateUserComponent } from './user/create-user/create-user.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +44,11 @@ import {AnnonceResorverService} from './services/annonceResorver.service';
     UnlessDirective,
     NavBarButtonStatusDirective,
     UserComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    HeaderComponent,
+    CommentsComponent,
+    CommentItemComponent,
+    CreateUserComponent
   ],
     imports: [
         BrowserModule,

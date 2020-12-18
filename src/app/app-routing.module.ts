@@ -10,16 +10,20 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {RouteGuardService} from './services/route-guard.service';
 import {CanDeactivateGuardSerice} from './services/can-deactivate-guard.serice';
 import {AnnonceResorverService} from './services/annonceResorver.service';
+import {CreateUserComponent} from './user/create-user/create-user.component';
 
 const routes: Routes = [
   { path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'},
+  { path: 'home',
     // canDeactivate: [CanDeactivateGuardSerice],
     component: SuccessAlertComponent},
   { path: 'annonces',
     // canDeactivate: [CanDeactivateGuardSerice],
     // canActivate: [RouteGuardService],
     component: AnnoncesComponent,
-    canActivateChild: [RouteGuardService],
+    // canActivateChild: [RouteGuardService],
     children: [
       {
         path: ':id/details',
@@ -33,6 +37,9 @@ const routes: Routes = [
   { path: 'annonces/user/:id',
     component: UserComponent
   },
+  { path: 'user',
+    component: CreateUserComponent
+  },
   { path: 'pagenotfound',
     component: PageNotFoundComponent
   },
@@ -43,7 +50,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [FormsModule,
-    RouterModule.forRoot(routes)],
+    RouterModule.forRoot(routes, {useHash: true})],
   exports: [RouterModule] // what is accessible from outside
 })
 export class AppRoutingModule { }

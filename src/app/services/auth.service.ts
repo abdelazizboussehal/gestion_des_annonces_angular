@@ -2,7 +2,7 @@ export class AuthService{
   status = false;
   isAccessible(): any {
     const promise = new Promise((resolve, reject) => {
-      setTimeout( () => resolve(this.status) , 1000 );
+      setTimeout( () => resolve(this.status) , 1 );
     } );
     return promise;
   }

@@ -1,6 +1,6 @@
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
 import {Annonce} from '../annonces/annonce.model';
-import {Observable} from 'rxjs';
+import {Observable} from 'rxjs/';
 import {Injectable} from '@angular/core';
 import {AnnonceDataSevice} from './annonceData.sevice';
 @Injectable()

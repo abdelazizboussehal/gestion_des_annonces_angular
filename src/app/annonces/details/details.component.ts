@@ -1,8 +1,9 @@
-import {Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {TestService} from '../../test.service';
 import {AnnonceDataSevice} from '../../services/annonceData.sevice';
 import {Annonce} from '../annonce.model';
 import {ActivatedRoute, Data} from '@angular/router';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-details',
@@ -12,25 +13,32 @@ import {ActivatedRoute, Data} from '@angular/router';
     TestService
   ]
 })
-export class DetailsComponent implements OnInit {
-  element;
+export class DetailsComponent implements OnInit, OnDestroy {
+  AnnonceDetails: any;
+  subjectAnnonceDetails!: Subscription;
+  index: any;
   constructor(private service: TestService, private annonceDataService: AnnonceDataSevice, private route: ActivatedRoute) {
-    this.element = annonceDataService.getAnnonceDetails();
   }
 
   ngOnInit(): void {
     this.route.data.subscribe( (data: Data) => {
-      this.element = data.ad;
+      this.AnnonceDetails = data.ad;
     });
-    // this.annonceDataService.annonceDetailsEmitter.subscribe((data: Annonce) => {this.element = data; });
+    this.subjectAnnonceDetails = this.annonceDataService.annonceDetailsSubject.subscribe((data: Annonce) => {this.AnnonceDetails = data; });
   }
   onChangeAnnonce(): void{
-    if (this.element)
-    { this.element.productName = 'hello from child'; }
+    if (this.AnnonceDetails)
+    { this.AnnonceDetails.productName = 'hello from child'; }
   }
   onRemove(): void {
-    if (this.element) {
-      this.annonceDataService.removeAnnonce(this.element);
+    if (this.AnnonceDetails) {
+      this.annonceDataService.removeAnnonce(this.AnnonceDetails);
+      // @ts-ignore
+      this.annonceDataService.setAnnonceDetails( null );
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subjectAnnonceDetails.unsubscribe();
   }
 }
