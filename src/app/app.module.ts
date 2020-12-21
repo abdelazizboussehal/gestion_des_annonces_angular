@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {HttpClientModule} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,6 +28,10 @@ import { HeaderComponent } from './header/header.component';
 import { CommentsComponent } from './comments/comments.component';
 import { CommentItemComponent } from './comments/comment-item/comment-item.component';
 import { CreateUserComponent } from './user/create-user/create-user.component';
+import { FormAnnonceComponent } from './annonces/form-annonce/form-annonce.component';
+import {ShortenPipe} from './custom-pipe/shorten.pipe';
+import { FilterPipe } from './custom-pipe/filter.pipe';
+
 
 @NgModule({
   declarations: [
@@ -48,12 +53,16 @@ import { CreateUserComponent } from './user/create-user/create-user.component';
     HeaderComponent,
     CommentsComponent,
     CommentItemComponent,
-    CreateUserComponent
+    CreateUserComponent,
+    FormAnnonceComponent,
+    ShortenPipe,
+    FilterPipe
   ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         FormsModule,
+        HttpClientModule,
         AppRoutingModule
     ],
   providers: [AnnonceDataSevice, AuthService, RouteGuardService, CanDeactivateGuardSerice,

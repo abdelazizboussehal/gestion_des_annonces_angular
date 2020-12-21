@@ -1,30 +1,48 @@
 import {Annonce} from '../annonces/annonce.model';
 import {Subject} from 'rxjs';
+import {Injectable} from '@angular/core';
+import {HttpAnnonceService} from './http-annonce.service';
+import {map} from 'rxjs/operators';
 
-
+@Injectable()
 export class AnnonceDataSevice{
-  private annonces: Annonce[] = [new Annonce(1, 1, 'telephone',
+   annoncesInit: Annonce[] = [new Annonce(1, 1, 'telephone',
     'samsung a6', 'jdod gasba', '*** // ***', 1, 1, '2020-12-1'),
     new Annonce(1, 1, 'telephone',
       'samsung a5', 'jdod gasba', '***', 1, 1, '2020-12-1'),
     new Annonce(1, 1, 'caba',
       'samsung ooredoo a5', 'jdod bzf gasba', '***', 1, 1, '2020-12-1')
   ];
+  private annonces: Annonce[] = [];
   private annonceDetails: any;
+  index = -1;
+
+  constructor(private annonceHttp: HttpAnnonceService) {
+
+  }
 
   annonceDetailsSubject = new Subject<Annonce>();
   annoncesSubject = new Subject<Annonce[]>();
+  annonceDetailsIndexSubject = new Subject<number>();
 
   getAnnonces(): Annonce[]{
+    this.annonceHttp.getAnnonces().
+    subscribe((annonce: Annonce[]) => {
+      console.log(annonce);
+      this.annonces = annonce;
+      this.annoncesSubject.next(this.annonces);
+    });
     return this.annonces.slice();
   }
   removeAnnonce(annoncee: Annonce): void{
     this.annonces = this.annonces.filter(( annonce: Annonce) => annonce !== annoncee);
     this.annoncesSubject.next(this.annonces);
+    this.storeToServer();
   }
   addAnnonce(annonce: Annonce): void{
     this.annonces.push(annonce);
     this.annoncesSubject.next(this.annonces);
+    this.storeToServer();
   }
   getAnnonceDetails(): any {
     return this.annonceDetails;
@@ -35,5 +53,13 @@ export class AnnonceDataSevice{
 
   setAnnonceDetails(annonce1: Annonce): void {
     this.annonceDetailsSubject.next(annonce1);
+  }
+  storeToServer(): void{
+    this.annonceHttp.storeAnnonces(this.annonces);
+  }
+  modify( annonce: Annonce, index: number): void{
+    this.annonces[index] = annonce;
+    this.annoncesSubject.next(this.annonces);
+    this.storeToServer();
   }
 }

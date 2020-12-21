@@ -16,25 +16,9 @@
 <div class="container" >
   <div class="row">
     <div class="col-sm-8">
-      <form (ngSubmit)="addAnnonce(f)" #f="ngForm">
-        <legend>Add new annonce </legend>
-        <div class="form-group text-left">
-          <label appBackGroundColor [colorInput]="nameInput.value" >Name :  </label>
-          <input type="text" class="form-control" ngModel name="name" #nameInput="ngModel" email required >
-          <p class="text-danger" *ngIf="!nameInput.valid && nameInput.touched"> please inter a valide name</p>
-          <label >Type :  </label>
-          <input type="text" class="form-control" ngModel name="type" required>
-          <div class="form-group">
-            <label > select type</label>
-            <select [ngModel]="defaultType" class="form-control" name="select" >
-              <option value="of"> offre </option>
-              <option value="de"> demeand</option>
-            </select>
-          </div>
-        </div>
-        <button [disabled]="!f.valid" class="btn btn-success"> add new annonce</button>
-      </form>
-      <div class="list-group" *ngFor="let annonce of annonces; index as i">
+      <app-form-annonce></app-form-annonce>
+      <input class="input-group" type="text" [(ngModel)]="filterValue">
+      <div class="list-group" *ngFor="let annonce of annonces |filter:filterValue:'typeAnnonce'; index as i ">
         <a (click)="onItemtChange( i )"  class="list-group-item">
           <app-annonce [element]="annonce"></app-annonce>
         </a>

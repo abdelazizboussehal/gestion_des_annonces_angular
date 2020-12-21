@@ -25,10 +25,12 @@ export class DetailsComponent implements OnInit, OnDestroy {
       this.AnnonceDetails = data.ad;
     });
     this.subjectAnnonceDetails = this.annonceDataService.annonceDetailsSubject.subscribe((data: Annonce) => {this.AnnonceDetails = data; });
+    /*this.index = this.annonceDataService.annonceDetailsIndexSubject.subscribe((data: number) => {
+      this.index = data;
+    });*/
   }
   onChangeAnnonce(): void{
-    if (this.AnnonceDetails)
-    { this.AnnonceDetails.productName = 'hello from child'; }
+    this.annonceDataService.annonceDetailsIndexSubject.next(this.annonceDataService.index);
   }
   onRemove(): void {
     if (this.AnnonceDetails) {

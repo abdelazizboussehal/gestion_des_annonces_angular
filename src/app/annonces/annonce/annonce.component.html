@@ -2,9 +2,9 @@
   <div class="row">
     <div class="col-sm text-left">
       <div class="container">
-        <h4 class="text-danger text-uppercase">{{element.productName}}</h4>
-        <p> type {{element.typeAnnonce}}</p>
-        <p>{{element.description}}</p>
+        <h4 class="text-danger text-uppercase">{{element.productName | shorten:200}}</h4>
+        <p >  type {{element.typeAnnonce}}</p>
+        <p id="descripton" class="text-body p-2"> description : {{element.description}}</p>
         <p class="text-info text-right"> {{element.createAnnonce}}</p>
         <div class="row align-content-center">
           <button class="btn btn-warning" [routerLink]="['user' , 1]" [fragment]="'loading'"

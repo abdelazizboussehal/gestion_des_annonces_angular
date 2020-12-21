@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../services/auth.service';
 import {Observable} from 'rxjs';
+import {AnnonceDataSevice} from '../services/annonceData.sevice';
+import {HttpAnnonceService} from '../services/http-annonce.service';
 
 @Component({
   selector: 'app-success-alert',
@@ -18,7 +20,8 @@ import {Observable} from 'rxjs';
 })
 export class SuccessAlertComponent implements OnInit {
 
-  constructor(private router: Router, private auth: AuthService) {
+  constructor(private router: Router, private auth: AuthService,
+              private dataAnnonce: AnnonceDataSevice, private http: HttpAnnonceService) {
     setTimeout(() => {
       this.router.navigate(['/annonces']);
     }, 20000 );
@@ -41,5 +44,10 @@ export class SuccessAlertComponent implements OnInit {
         return false;
       }
     }
+  }
+
+  store(): void {
+    this.http.storeAnnonces(this.dataAnnonce.annoncesInit);
+
   }
 }

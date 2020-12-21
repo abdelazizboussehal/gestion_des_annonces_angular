@@ -1,0 +1,18 @@
+<form (ngSubmit)="addAnnonce(f)" #f="ngForm">
+  <legend>Add new annonce </legend>
+  <div class="form-group text-left">
+    <label appBackGroundColor [colorInput]="nameInput.value" >Name :  </label>
+    <input type="text" class="form-control" ngModel name="name" #nameInput="ngModel" required >
+    <p class="text-danger" *ngIf="!nameInput.valid && nameInput.touched"> please inter a valide name</p>
+    <label >Type :  </label>
+    <input type="text" class="form-control" ngModel name="type" required>
+    <div class="form-group">
+      <label > select type</label>
+      <select [ngModel]="defaultType" class="form-control" name="select" >
+        <option value="of"> offre </option>
+        <option value="de"> demeand</option>
+      </select>
+    </div>
+  </div>
+  <button [disabled]="!f.valid" class="btn btn-success" > {{ isModify ? 'modify' : 'Add new'}} annonce</button>
+</form>
