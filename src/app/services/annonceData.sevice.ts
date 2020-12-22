@@ -2,16 +2,13 @@ import {Annonce} from '../annonces/annonce.model';
 import {Subject} from 'rxjs';
 import {Injectable} from '@angular/core';
 import {HttpAnnonceService} from './http-annonce.service';
-import {map} from 'rxjs/operators';
 
 @Injectable()
 export class AnnonceDataSevice{
-   annoncesInit: Annonce[] = [new Annonce(1, 1, 'telephone',
-    'samsung a6', 'jdod gasba', '*** // ***', 1, 1, '2020-12-1'),
-    new Annonce(1, 1, 'telephone',
-      'samsung a5', 'jdod gasba', '***', 1, 1, '2020-12-1'),
-    new Annonce(1, 1, 'caba',
-      'samsung ooredoo a5', 'jdod bzf gasba', '***', 1, 1, '2020-12-1')
+   annoncesInit: Annonce[] = [new Annonce(1, 'ihpone', 2500, 'telephone',
+     'electro', 'jdid gassba', '13 mp', 0, 0, new Date('12-12-2020')),
+     new Annonce(1, 'frigidaire', 4500, 'froid',
+       'electro', 'jdid gassba', '13 mp', 0, 0, new Date('12-12-2020'))
   ];
   private annonces: Annonce[] = [];
   private annonceDetails: any;
@@ -28,7 +25,6 @@ export class AnnonceDataSevice{
   getAnnonces(): Annonce[]{
     this.annonceHttp.getAnnonces().
     subscribe((annonce: Annonce[]) => {
-      console.log(annonce);
       this.annonces = annonce;
       this.annoncesSubject.next(this.annonces);
     });

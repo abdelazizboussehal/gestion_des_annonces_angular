@@ -1,5 +1,5 @@
-<form (ngSubmit)="addAnnonce(f)" #f="ngForm">
-  <legend>Add new annonce </legend>
+<form class="style2 p-3" (ngSubmit)="addAnnonce(f)" #f="ngForm">
+  <legend class="stye1">Add new annonce </legend>
   <div class="form-group text-left">
     <label appBackGroundColor [colorInput]="nameInput.value" >Name :  </label>
     <input type="text" class="form-control" ngModel name="name" #nameInput="ngModel" required >

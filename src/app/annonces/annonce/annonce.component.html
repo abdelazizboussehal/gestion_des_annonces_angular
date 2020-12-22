@@ -3,12 +3,12 @@
     <div class="col-sm text-left">
       <div class="container">
         <h4 class="text-danger text-uppercase">{{element.productName | shorten:200}}</h4>
-        <p >  type {{element.typeAnnonce}}</p>
+        <p >  type {{element.type}}</p>
         <p id="descripton" class="text-body p-2"> description : {{element.description}}</p>
-        <p class="text-info text-right"> {{element.createAnnonce}}</p>
+        <p class="text-info text-right"> {{element.creationDate}}</p>
         <div class="row align-content-center">
           <button class="btn btn-warning" [routerLink]="['user' , 1]" [fragment]="'loading'"
-                  [queryParams]="{ad_id : element.productName}" [queryParamsHandling]="'merge'"> show profile user
+                  [queryParams]="{ad_id : element.type}" [queryParamsHandling]="'merge'"> show profile user
           </button>
         </div>
       </div>

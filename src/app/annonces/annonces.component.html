@@ -19,9 +19,9 @@
       <app-form-annonce></app-form-annonce>
       <input class="input-group" type="text" [(ngModel)]="filterValue">
       <div class="list-group" *ngFor="let annonce of annonces |filter:filterValue:'typeAnnonce'; index as i ">
-        <a (click)="onItemtChange( i )"  class="list-group-item">
+        <button  (click)="onItemtChange( i )"  class="list-group-item m-1">
           <app-annonce [element]="annonce"></app-annonce>
-        </a>
+        </button>
       </div>
     </div>
 

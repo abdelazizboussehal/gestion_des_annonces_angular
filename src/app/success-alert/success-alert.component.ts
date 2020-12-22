@@ -12,9 +12,15 @@ import {HttpAnnonceService} from '../services/http-annonce.service';
     `
     h4{
     padding: 20px;
-      background-color: aquamarine;
-      border: 1px solid aqua;
+      background-color: #7CB9E8;
+      border: 3px solid #1C6EA4;
+      border-radius: 10px;
+      background: #1519CE;
+      background: -moz-linear-gradient(left, #1519CE 0%, #0C7CC5 100%);
+      background: -webkit-linear-gradient(left, #1519CE 0%, #0C7CC5 100%);
+      background: linear-gradient(to right, #1519CE 0%, #0C7CC5 100%);
     }
+
     `
   ]
 })
@@ -31,6 +37,7 @@ export class SuccessAlertComponent implements OnInit {
   }
 
   login(): void {
+    this.http.getAnnonceFromSpringBoot();
     this.auth.login();
   }
   logout(): void {

@@ -1,5 +1,4 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {TestService} from '../../test.service';
 import {AnnonceDataSevice} from '../../services/annonceData.sevice';
 import {Annonce} from '../annonce.model';
 import {ActivatedRoute, Data} from '@angular/router';
@@ -10,21 +9,22 @@ import {Subscription} from 'rxjs';
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.css'],
   providers: [
-    TestService
   ]
 })
 export class DetailsComponent implements OnInit, OnDestroy {
   AnnonceDetails: any;
   subjectAnnonceDetails!: Subscription;
   index: any;
-  constructor(private service: TestService, private annonceDataService: AnnonceDataSevice, private route: ActivatedRoute) {
+  constructor(private annonceDataService: AnnonceDataSevice, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
     this.route.data.subscribe( (data: Data) => {
-      this.AnnonceDetails = data.ad;
+      this.AnnonceDetails = data.annonceDetails;
     });
-    this.subjectAnnonceDetails = this.annonceDataService.annonceDetailsSubject.subscribe((data: Annonce) => {this.AnnonceDetails = data; });
+    this.subjectAnnonceDetails = this.annonceDataService.annonceDetailsSubject.subscribe((data: Annonce) => {
+      this.AnnonceDetails = data;
+    });
     /*this.index = this.annonceDataService.annonceDetailsIndexSubject.subscribe((data: number) => {
       this.index = data;
     });*/

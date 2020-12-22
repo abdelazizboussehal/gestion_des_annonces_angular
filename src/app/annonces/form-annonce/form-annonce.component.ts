@@ -22,7 +22,7 @@ export class FormAnnonceComponent implements OnInit {
       const annonce: Annonce = this.annonceDataService.getAnnonces()[data];
       this.from.form.patchValue({
           name : annonce.productName,
-        type : annonce.typeAnnonce
+        type : annonce.type
       });
     });
   }
@@ -33,13 +33,12 @@ export class FormAnnonceComponent implements OnInit {
         annonce.push(new Annonce(1, 1500, annonceJson.value.type,  annonceJson.value.name,
           'jdod gasba', '***', 1, 1, '2020-12-1'))
         this.annoncehttp.storeAnnonce(annonce);*/
-        this.annonceDataService.addAnnonce(
-          new Annonce(1, 1500, annonceJson.value.type,  annonceJson.value.name,
-            'jdod gasba', '***', 1, 1, '2020-12-1')
+        this.annonceDataService.addAnnonce(new Annonce(1,  annonceJson.value.name, 2500, annonceJson.value.type,
+          'electro', 'jdid gassba', '13 mp', 0, 0, new Date('12-12-2020'))
         );
       } else {
-        const modifyannonce = new Annonce(1, 1500, annonceJson.value.type,  annonceJson.value.name,
-          'tbadala', '***', 1, 1, '2020-12-1');
+        const modifyannonce = new Annonce(1,  annonceJson.value.name, 2500, annonceJson.value.type,
+          'electro', 'jdid gassba', '13 mp', 0, 0, new Date('12-12-2020'));
         this.isModify = false;
         this.annonceDataService.modify(modifyannonce, this.annonceDataService.index);
       }

@@ -30,7 +30,7 @@ export class AnnoncesComponent implements OnInit, CanComponentDeactivate {
     this.annonceDataService.annonceDetailsSubject.subscribe((data: Annonce) => {this.annonceDtails = data; });
   }
   onItemtChange(annonce: number): void {
-    this.http.getAnnonce(annonce);
+    // this.http.getAnnonce(annonce);
     // this.annonceDataService.annonceDetailsEmitter.emit(annonce);
     this.router.navigate([ annonce, 'details'],
       {

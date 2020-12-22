@@ -65,8 +65,7 @@ import { FilterPipe } from './custom-pipe/filter.pipe';
         HttpClientModule,
         AppRoutingModule
     ],
-  providers: [AnnonceDataSevice, AuthService, RouteGuardService, CanDeactivateGuardSerice,
-  AnnonceResorverService],
+  providers: [AnnonceDataSevice, AuthService, RouteGuardService, CanDeactivateGuardSerice, AnnonceResorverService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

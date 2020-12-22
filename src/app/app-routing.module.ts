@@ -27,8 +27,8 @@ const routes: Routes = [
     children: [
       {
         path: ':id/details',
-        resolve: { ad: AnnonceResorverService},
-        component: DetailsComponent
+        component: DetailsComponent,
+        resolve: { annonceDetails: AnnonceResorverService}
       }
     ]},
   { path: 'alert/:msg',
