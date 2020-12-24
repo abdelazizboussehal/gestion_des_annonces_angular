@@ -11,6 +11,7 @@ import {RouteGuardService} from './services/route-guard.service';
 import {CanDeactivateGuardSerice} from './services/can-deactivate-guard.serice';
 import {AnnonceResorverService} from './services/annonceResorver.service';
 import {CreateUserComponent} from './user/create-user/create-user.component';
+import {AuthformComponent} from './Auth/authform/authform.component';
 
 const routes: Routes = [
   { path: '',
@@ -36,6 +37,9 @@ const routes: Routes = [
   },
   { path: 'annonces/user/:id',
     component: UserComponent
+  },
+  { path: 'auth',
+    component: AuthformComponent
   },
   { path: 'user',
     component: CreateUserComponent

@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {AnnonceDataSevice} from '../../services/annonceData.sevice';
+import {AnnonceDataSevice} from '../../services/annonceData.service';
 import {Annonce} from '../annonce.model';
 import {ActivatedRoute, Data} from '@angular/router';
 import {Subscription} from 'rxjs';

@@ -12,6 +12,10 @@
     <a class="nav-link" [routerLink]="['alert',msgErrorInput.value]">Warning messag</a>
   </li>
 
+  <li class="nav-item" [routerLinkActive]="'active'">
+    <a class="nav-link" [routerLink]="['auth']">authentication</a>
+  </li>
+
   <div class="btn-group ml-auto" role="group">
     <button (click)="onlist(list)" id="btnGroupDrop1" type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Dropdown

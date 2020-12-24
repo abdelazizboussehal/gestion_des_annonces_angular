@@ -1,13 +1,14 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Annonce} from '../annonces/annonce.model';
 import {map} from 'rxjs/operators';
+import {CookieService} from 'ngx-cookie-service';
 
 
 @Injectable({providedIn : 'root'})
 export class HttpAnnonceService{
   url = 'https://annonces-f0a61-default-rtdb.firebaseio.com/ads.json'; // we should specificate name of table in face base .json
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private cookies: CookieService) {
   }
   storeAnnonces(annonces: Annonce[]): void{
     this.http.put(this.url, annonces).subscribe((request) => {
@@ -15,12 +16,21 @@ export class HttpAnnonceService{
     });
   }
 
-  storeAnnonce(annonces: Annonce []): void{
-    this.http.post(this.url, annonces).subscribe((request) => {
+  storeAnnonce(annonce: Annonce): void{
+    const urlSrping = 'http://localhost:8080/annonce';
+    this.http.post(urlSrping, annonce).subscribe((request) => {
       console.log(request);
     });
   }
   getAnnonces(): any{
+    /*const jwt = this.cookies.get('jwt');
+    /!*const header = new HttpHeaders({Authorization: 'Bearer ' + this.cookies.get('jwt'),
+      'Content-Type': 'application/json'
+    });*!/
+    let header = new HttpHeaders();
+    header = header.set('Authorization', `Bearer ${jwt}`);
+    header = header.set('Content-Type', 'application/json');
+    */
     return this.http.get<Annonce []>('http://localhost:8080/annonce').
     pipe(map((annonces: Annonce[]) => {
       return annonces.map((annonce: Annonce) => {

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../services/auth.service';
 import {Observable} from 'rxjs';
-import {AnnonceDataSevice} from '../services/annonceData.sevice';
+import {AnnonceDataSevice} from '../services/annonceData.service';
 import {HttpAnnonceService} from '../services/http-annonce.service';
 
 @Component({

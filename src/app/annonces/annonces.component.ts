@@ -1,6 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Annonce} from './annonce.model';
-import {AnnonceDataSevice} from '../services/annonceData.sevice';
+import {AnnonceDataSevice} from '../services/annonceData.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Observable} from 'rxjs';
 import {CanComponentDeactivate} from '../services/can-deactivate-guard.serice';

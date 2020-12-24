@@ -1,0 +1,12 @@
+<form (ngSubmit)="onSubmit(form)" #form="ngForm" >
+  <div class="col-auto" >
+    <label class="text-body mx-3" for="email"> email </label>
+    <input class="form-control col-5"  id="email" type="text" name="userName" ngModel required>
+  </div>
+  <div class="col-auto" >
+    <label class="text-body mx-3" for="password"> password </label>
+    <input class="form-control col-5" id="password" type="password" name="password" ngModel required>
+  </div>
+  <button class="btn btn-outline-dark col-2 m-1" [disabled]="!form.valid"> {{isSingUp ? 'sign up' : 'sign in'}} </button>
+  <button class="btn btn-outline-dark col-2 m-1" type="button" (click)="isSingUp=!isSingUp"> change to {{isSingUp ? 'sign up' : 'sign in'}} </button>
+</form>

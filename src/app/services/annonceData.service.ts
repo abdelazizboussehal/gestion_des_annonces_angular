@@ -33,29 +33,28 @@ export class AnnonceDataSevice{
   removeAnnonce(annoncee: Annonce): void{
     this.annonces = this.annonces.filter(( annonce: Annonce) => annonce !== annoncee);
     this.annoncesSubject.next(this.annonces);
-    this.storeToServer();
   }
   addAnnonce(annonce: Annonce): void{
     this.annonces.push(annonce);
     this.annoncesSubject.next(this.annonces);
-    this.storeToServer();
+    this.storeToServer(annonce);
   }
   getAnnonceDetails(): any {
     return this.annonceDetails;
   }
-  getAnnonceByIndex(id: number): Annonce{
-    return this.annonces[id];
+  getAnnonceByIndex(index: number): Annonce{
+    console.log(this.annonces);
+    return this.annonces[index];
   }
 
   setAnnonceDetails(annonce1: Annonce): void {
     this.annonceDetailsSubject.next(annonce1);
   }
-  storeToServer(): void{
-    this.annonceHttp.storeAnnonces(this.annonces);
+  storeToServer(annonce: Annonce): void{
+    this.annonceHttp.storeAnnonce(annonce);
   }
   modify( annonce: Annonce, index: number): void{
     this.annonces[index] = annonce;
     this.annoncesSubject.next(this.annonces);
-    this.storeToServer();
   }
 }
