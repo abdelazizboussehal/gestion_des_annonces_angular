@@ -1,19 +1,12 @@
 <ul class="nav nav-tabs mx-4">
   <li class="nav-item" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact : true}">
-    <a class="nav-link" [routerLink]="'/'">home</a>
+    <a class="nav-link btn-outline-primary" [routerLink]="'/'">home</a>
   </li>
   <li class="nav-item" [routerLinkActive]="'active'">
-    <a class="nav-link" [routerLink]="['annonces']">Annonces</a>
-  </li>
-  <li class="nav-item">
-    <input type="text" #msgErrorInput placeholder=" error message"/>
+    <a class="nav-link btn-outline-primary" [routerLink]="['annonces']">Annonces</a>
   </li>
   <li class="nav-item" [routerLinkActive]="'active'">
-    <a class="nav-link" [routerLink]="['alert',msgErrorInput.value]">Warning messag</a>
-  </li>
-
-  <li class="nav-item" [routerLinkActive]="'active'">
-    <a class="nav-link" [routerLink]="['auth']">authentication</a>
+    <a class="nav-link btn-outline-primary" [routerLink]="['auth']">authentication</a>
   </li>
 
   <div class="btn-group ml-auto" role="group">

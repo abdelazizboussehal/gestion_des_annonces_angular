@@ -16,11 +16,21 @@
 <div class="container" >
   <div class="row">
     <div class="col-sm-8">
-      <app-form-annonce></app-form-annonce>
-      <input class="input-group" type="text" [(ngModel)]="filterValue">
-      <div class="list-group" *ngFor="let annonce of annonces |filter:filterValue:'typeAnnonce'; index as i ">
-        <button  (click)="onItemtChange( i )"  class="list-group-item m-1">
-          <app-annonce [element]="annonce"></app-annonce>
+      <app-form-annonce [hidden]="isEnableForm"></app-form-annonce>
+      <button [hidden]="!isEnableForm"  class="btn btn-outline-info m-1" (click)="isEnableForm=!isEnableForm"> add annonce</button>
+      <button class="btn btn-outline-primary m-1" (click)="download('pdf')"> donwload pdf </button>
+      <button class="btn btn-outline-secondary m-1" (click)="download('html')"> donwload html </button>
+
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">filter</span>
+        </div>
+        <input id="filter" class="form-control" aria-label="With textarea" type="text" [(ngModel)]="filterValue">
+      </div>
+
+      <div class="list-group" *ngFor="let annonce of annonces |filter:filterValue:'productName'; index as i ">
+        <button  (click)="onItemtChange( i )"  class="list-group-item m-1 btn-outline-secondary">
+          <app-annonce  [element]="annonce"></app-annonce>
         </button>
       </div>
     </div>
@@ -32,6 +42,4 @@
       </ng-template>
     </div>
   </div>
-
-
 </div>

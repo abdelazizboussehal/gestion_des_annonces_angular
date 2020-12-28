@@ -15,6 +15,7 @@ import {HttpAnnonceService} from '../services/http-annonce.service';
 export class AnnoncesComponent implements OnInit, CanComponentDeactivate {
   annonces;
   annonceDtails;
+  isEnableForm = true;
   @ViewChild('nameInput')
   nameInput!: ElementRef;
   filterValue = '';
@@ -56,5 +57,9 @@ export class AnnoncesComponent implements OnInit, CanComponentDeactivate {
 
   onSubmit(form: NgForm): void {
     console.log(form.value);
+  }
+
+  download(type: string): void {
+    this.http.download(type);
   }
 }
