@@ -1,20 +1,20 @@
-<ul class="nav nav-tabs mx-4">
+<ul class="nav nav-tabs mx-4 border-b-2 border-gray-200 font-serif sm:bg-blue-200 md:bg-pink-200 lg:bg-red-200">
   <li class="nav-item" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact : true}">
-    <a class="nav-link btn-outline-primary" [routerLink]="'/'">home</a>
+    <a class="nav-link btn-outline-primary text-gray-700 font-bold uppercase" [routerLink]="'/'">home</a>
   </li>
-  <li class="nav-item" [routerLinkActive]="'active'">
-    <a class="nav-link btn-outline-primary" [routerLink]="['annonces']">Annonces</a>
+  <li class="nav-item border-l-2 border-gray-200" [routerLinkActive]="'active'">
+    <a class="nav-link btn-outline-primary text-gray-700 font-semibold uppercase" [routerLink]="['annonces']">Annonces</a>
   </li>
-  <li class="nav-item" [routerLinkActive]="'active'">
-    <a class="nav-link btn-outline-primary" [routerLink]="['auth']">authentication</a>
+  <li class="nav-item border-l-2 border-gray-200" [routerLinkActive]="'active'">
+    <a class="nav-link btn-outline-primary text-gray-700 font-semibold uppercase" [routerLink]="['auth']">authentication</a>
   </li>
 
-  <div class="btn-group ml-auto" role="group">
+  <div class="btn-group ml-auto border-2 border-gray-200" role="group">
     <button (click)="onlist(list)" id="btnGroupDrop1" type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Dropdown
     </button>
     <div class="dropdown-menu"  #list aria-labelledby="btnGroupDrop1">
-      <a class="dropdown-item" >sing in</a>
+      <a class="dropdown-item text-aziz-200" >sing in</a>
       <a class="dropdown-item" [routerLinkActive]="'active'" routerLink="user">create a count </a>
     </div>
   </div>

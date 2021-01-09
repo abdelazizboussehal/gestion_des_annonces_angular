@@ -13,33 +13,35 @@
 <button class="btn btn-primary mx-4" [disabled]="updateNameAnnonceVar === ''" (click)="addAnnonce()"> Add one annonce</button>
 <p [class]="classOfNotification"> {{statusOfAnnonce}}</p>-->
 
-<div class="container" >
-  <div class="row">
-    <div class="col-sm-8">
+<div class="grid grid-cols-12 gap-1.5">
+
+    <div class="col-span-8">
       <app-form-annonce [hidden]="isEnableForm"></app-form-annonce>
+      <div class="flex justify-around">
+        <div class="input-group w-60">
+          <div class="input-group-prepend">
+            <span class="input-group-text">filter</span>
+          </div>
+          <input id="filter" class="form-control" aria-label="With textarea" type="text" [(ngModel)]="filterValue">
+        </div>
       <button [hidden]="!isEnableForm"  class="btn btn-outline-info m-1" (click)="isEnableForm=!isEnableForm"> add annonce</button>
       <button class="btn btn-outline-primary m-1" (click)="download('pdf')"> donwload pdf </button>
       <button class="btn btn-outline-secondary m-1" (click)="download('html')"> donwload html </button>
-
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text">filter</span>
-        </div>
-        <input id="filter" class="form-control" aria-label="With textarea" type="text" [(ngModel)]="filterValue">
       </div>
 
+
       <div class="list-group" *ngFor="let annonce of annonces |filter:filterValue:'productName'; index as i ">
-        <button  (click)="onItemtChange( i )"  class="list-group-item m-1 btn-outline-secondary">
-          <app-annonce  [element]="annonce"></app-annonce>
+        <button class="rounded shadow-xl"   (click)="onItemtChange( i )"  class="list-group-item m-1 btn-outline-secondary">
+          <app-annonce [element]="annonce"></app-annonce>
         </button>
       </div>
     </div>
 
-    <div class="col-sm-4">
+    <div class="col-span-4 flex justify-center mt-12">
       <router-outlet *ngIf="annonceDtails; else infotext"></router-outlet>
       <ng-template #infotext>
         <p class="text-danger" > select annonce for see it details</p>
       </ng-template>
     </div>
-  </div>
+
 </div>

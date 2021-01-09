@@ -1,21 +1,12 @@
-<app-header></app-header>
-<div class="container m-1">
-<div class="row text-center">
-  <div class="col">
-    <router-outlet></router-outlet>
+<main class="bg-gray-200">
+  <app-header></app-header>
+  <div class="container m-1">
+    <div class="row text-center">
+      <div class="col">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
   </div>
- <!-- <div class="col">
-    <app-success-alert></app-success-alert>
-    <app-warning-alert></app-warning-alert>
-  </div>-->
-</div>
-</div>
-<!--<app-tp1></app-tp1>-->
+</main>
 
-
-<!-- TP2
-<app-game-controller (lastNumber)="testNumber($event)"></app-game-controller>
-<app-game-even *ngFor="let number of evenNumber" [evenNumber]="number"></app-game-even>
-<app-game-odd *ngFor="let number of oddNumber" [oddNumber]="number"></app-game-odd>
--->
 
